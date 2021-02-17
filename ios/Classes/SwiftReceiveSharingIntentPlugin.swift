@@ -7,8 +7,6 @@ public class SwiftReceiveSharingIntentPlugin: NSObject, FlutterPlugin, FlutterSt
     static let kEventsChannelMedia = "receive_sharing_intent/events-media";
     static let kEventsChannelLink = "receive_sharing_intent/events-text";
     
-    private var customSchemePrefix = "ShareMedia";
-    
     private var initialMedia: [SharedMediaFile]? = nil
     private var latestMedia: [SharedMediaFile]? = nil
     
@@ -54,7 +52,7 @@ public class SwiftReceiveSharingIntentPlugin: NSObject, FlutterPlugin, FlutterSt
 
     public func hasMatchingSchemePrefix(url: URL?) -> Bool {
         if let url = url {
-            return url.absoluteString.hasPrefix(self.customSchemePrefix)
+            return url.absoluteString.hasPrefix(Bundle.main.bundleIdentifier!)
         }
         return false
     }
